@@ -48,7 +48,7 @@ export default class ChoicePage extends Component{
                 <ScrollView style={styles.scrollViewStyle}
                             showsHorizontalScrollIndicator={true}
                             onScrollBeginDrag={(e)=>{
-                                console.log(e.offsetHeight)
+                                console.log(e.nativeEvent.contentOffset.x)
                                 this.setState({NavH:110})
                             }}
                 >
