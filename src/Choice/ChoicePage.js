@@ -13,6 +13,7 @@ import {
     TextInput,
     StatusBar,
     Animated,
+    LayoutAnimation
 } from 'react-native'
 // import NavigationBar from '../NavigatorBar'
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -21,7 +22,41 @@ export default class ChoicePage extends Component{
     constructor(props) {
         super(props)
         this.state={
-            NavH:120,
+            NavH:110,
+            TM_x:0,
+            TM_y:0,
+
+        }
+    }
+
+    scrollAnimated(y){
+
+        if(y>10) {
+            LayoutAnimation.configureNext({
+                duration: 1200,
+                create: {
+                    type: 'linear',
+                    property: 'opacity'  //注意这里，我们设置新布局被创建时的动画特性为透明度
+                },
+                update: {
+                    type: 'linear',
+                    property: 'opacity'
+                }
+            });
+            this.setState({TM_y: -150})
+        }else {
+            LayoutAnimation.configureNext({
+                duration: 100,
+                create: {
+                    type: 'linear',
+                    property: 'opacity'  //注意这里，我们设置新布局被创建时的动画特性为透明度
+                },
+                update: {
+                    type: 'linear',
+                 }
+            });
+            this.setState({TM_y: 0})
+
         }
     }
 
@@ -33,12 +68,12 @@ export default class ChoicePage extends Component{
                     barStyle="light-content"
                 />
                 <View style={[styles.navView,{height:this.state.NavH}]}>
-                    <View style={{paddingTop:24,padding:15,paddingBottom:8,flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
+                    <View style={{paddingTop:24,padding:15,paddingBottom:8,height:65,flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
                         <Icon name="md-qr-scanner" size={25} color='white'/>
-                        <Text style={{fontSize:27,color:'white',fontWeight:'500',fontFamily:'Arial'}}>TMALL</Text>
+                        <Text ref = "TMALL" style={{fontSize:27,color:'white',fontWeight:'500',fontFamily:'Arial',marginTop:this.state.TM_y}}>TMALL</Text>
                         <Icon name="ios-chatbubbles" size={25} color='white'/>
                     </View>
-                    <View style={styles.inputView}>
+                    <View ref="inputs" style={styles.inputView}>
                         <Icon name="ios-search-outline" size={23} color='gray'/>
                         <Text style={{fontSize:15,color:'gray',textAlign:'left',position:'absolute',left:35}}>联想笔记本</Text>
                         <Icon name="ios-camera-outline" size={26} color='gray'/>
@@ -48,8 +83,8 @@ export default class ChoicePage extends Component{
                 <ScrollView style={styles.scrollViewStyle}
                             showsHorizontalScrollIndicator={true}
                             onScrollBeginDrag={(e)=>{
-                                console.log(e.nativeEvent.contentOffset.x)
-                                this.setState({NavH:110})
+                                this.scrollAnimated(e.nativeEvent.contentOffset.y);
+                                {/*this.setState({NavH:100})*/}
                             }}
                 >
                     <View style={{height:100}}>
@@ -57,6 +92,30 @@ export default class ChoicePage extends Component{
                     </View>
                     <View style={{height:100}}>
                     <Text>联想笔记本</Text>
+                    </View>
+                    <View style={{height:100}}>
+                        <Text>联想笔记本</Text>
+                    </View>
+                    <View style={{height:100}}>
+                        <Text>联想笔记本</Text>
+                    </View>
+                    <View style={{height:100}}>
+                        <Text>联想笔记本</Text>
+                    </View>
+                    <View style={{height:100}}>
+                        <Text>联想笔记本</Text>
+                    </View>
+                    <View style={{height:100}}>
+                        <Text>联想笔记本</Text>
+                    </View>
+                    <View style={{height:100}}>
+                        <Text>联想笔记本</Text>
+                    </View>
+                    <View style={{height:100}}>
+                        <Text>联想笔记本</Text>
+                    </View>
+                    <View style={{height:100}}>
+                        <Text>联想笔记本</Text>
                     </View>
 
                 </ScrollView>
