@@ -1,0 +1,44 @@
+{
+  "swiper": [
+    "https://gdp.alicdn.com/imgextra/i1/747872819/TB2CxGjub8kpuFjy0FcXXaUhpXa_!!747872819.jpg",
+    "https://img.alicdn.com/tps/i4/TB1m2yLRVXXXXcqXVXXSutbFXXX.jpg_1080x1800Q90s50.jpg",
+    "https://img.alicdn.com/tfs/TB1n0R7RVXXXXXMXFXXXXXXXXXX-1920-350.jpg",
+    "https://gjusp.alicdn.com/img/img1498124488118-3158802926.jpg@1000y-0ic_50Q.jpg"
+  ],
+  "Items": [
+    {
+      "title": "苏宁易购",
+      "subtitle": "",
+      "image": "https://gw.alicdn.com/tfs/TB11OCuRpXXXXaBXFXXXXXXXXXX-230-230.png?avatar=1"
+    },
+    {
+
+      "title": "天猫超市",
+      "subtitle": "",
+      "image": "https://gw.alicdn.com/tfs/TB1OaIwRXXXXXapXpXXXXXXXXXX-230-230.png?avatar=1"
+    },
+    {
+      "title": "天猫国际",
+      "subtitle": "",
+      "image": "https://gw.alicdn.com/tfs/TB1I9ApRXXXXXcGXpXXXXXXXXXX-230-230.png?avatar=1"
+    },
+    {
+      "title": "聚划算",
+      "subtitle": "",
+      "image": "https://gw.alicdn.com/tfs/TB126IaRXXXXXcXXVXXXXXXXXXX-230-230.png?avatar=1"
+    },
+    {
+      "title": "分类",
+      "subtitle": "",
+      "image": "https://gw.alicdn.com/tfs/TB1NTkrRXXXXXcKXpXXXXXXXXXX-230-230.png?avatar=1"
+    }
+  ],
+  "News":{
+    "icon":"https://img.alicdn.com/tfs/TB1iUlKQFXXXXccaXXXXXXXXXXX-126-124.png",
+    "titles":[
+      ["为了集齐它们 倾家荡产也愿意","小栗旬毁颜尬舞 自曝当演员为《银魂》"],
+      ["大黄蜂蜕变成“主角”汽车人降临天猫","单身是贵族还是狗？天猫的回答亮了！"],
+      ["嫌这些品牌土气？如今已经潮翻天","今年流行的丸子头，比去年上移了5公分！"]
+    ]
+  }
+}

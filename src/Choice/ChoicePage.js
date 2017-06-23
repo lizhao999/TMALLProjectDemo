@@ -15,22 +15,49 @@ import {
     Animated,
     LayoutAnimation
 } from 'react-native'
-// import NavigationBar from '../NavigatorBar'
+import TestData from './TestData.json'
+import ChoiceHeadView from './ChoiceHeadView'
+
 import Icon from 'react-native-vector-icons/Ionicons';
 var NavH = 0;
+let tmall= 'https://gw.alicdn.com/tfs/TB1HWNORFXXXXciaXXXXXXXXXXX-800-140.png'
 export default class ChoicePage extends Component{
     constructor(props) {
         super(props)
+        var ds = new ListView.DataSource({
+            rowHasChanged: (row1, row2) => row1 !== row2,
+        })
         this.state={
+            dataSource:ds.cloneWithRows([]),
+
             NavH:110,
             TM_x:0,
-            TM_y:0,
-
+            TM_y:0
         }
     }
 
-    scrollAnimated(y){
+    componentDidMount() {
+        // data = {'a':TestData}
+        //
+        this.setState({
+            dataSource:this.state.dataSource.cloneWithRows(TestData.swiper)
+        })
+        // fetch('http://ued.yihaodian.com:3001/api/70')
+        //     .then((response) => response.json())
+        //     .then((data) => {
+        //         this.listData = data.listData;
+        //         this.len = this.listData.length;
+        //         this.count = Math.ceil(this.len / this.pageSize);
+        //
+        //         this.setState({
+        //             dataSource:this.ds.cloneWithRows(TestData)
+        //         })
+        //
+        //     })
+        //     .done();
+    }
 
+    scrollAnimated(y){
         if(y>10) {
             LayoutAnimation.configureNext({
                 duration: 1200,
@@ -70,7 +97,11 @@ export default class ChoicePage extends Component{
                 <View style={[styles.navView,{height:this.state.NavH}]}>
                     <View style={{paddingTop:24,padding:15,paddingBottom:8,height:65,flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
                         <Icon name="md-qr-scanner" size={25} color='white'/>
-                        <Text ref = "TMALL" style={{fontSize:27,color:'white',fontWeight:'500',fontFamily:'Arial',marginTop:this.state.TM_y}}>TMALL</Text>
+                        {/*<Text ref = "TMALL" style={{fontSize:27,color:'white',fontWeight:'500',fontFamily:'Arial',marginTop:this.state.TM_y}}>TMALL</Text>*/}
+                        <Image
+                            style={{height:25,width:200,resizeMode:'cover'}}
+                            source={{ uri:tmall}}
+                        />
                         <Icon name="ios-chatbubbles" size={25} color='white'/>
                     </View>
                     <View ref="inputs" style={styles.inputView}>
@@ -78,49 +109,39 @@ export default class ChoicePage extends Component{
                         <Text style={{fontSize:15,color:'gray',textAlign:'left',position:'absolute',left:35}}>联想笔记本</Text>
                         <Icon name="ios-camera-outline" size={26} color='gray'/>
                     </View>
-
                 </View>
-                <ScrollView style={styles.scrollViewStyle}
-                            showsHorizontalScrollIndicator={true}
-                            onScrollBeginDrag={(e)=>{
-                                this.scrollAnimated(e.nativeEvent.contentOffset.y);
-                                {/*this.setState({NavH:100})*/}
-                            }}
-                >
-                    <View style={{height:100}}>
-                        <Text>联想笔记本</Text>
-                    </View>
-                    <View style={{height:100}}>
-                    <Text>联想笔记本</Text>
-                    </View>
-                    <View style={{height:100}}>
-                        <Text>联想笔记本</Text>
-                    </View>
-                    <View style={{height:100}}>
-                        <Text>联想笔记本</Text>
-                    </View>
-                    <View style={{height:100}}>
-                        <Text>联想笔记本</Text>
-                    </View>
-                    <View style={{height:100}}>
-                        <Text>联想笔记本</Text>
-                    </View>
-                    <View style={{height:100}}>
-                        <Text>联想笔记本</Text>
-                    </View>
-                    <View style={{height:100}}>
-                        <Text>联想笔记本</Text>
-                    </View>
-                    <View style={{height:100}}>
-                        <Text>联想笔记本</Text>
-                    </View>
-                    <View style={{height:100}}>
-                        <Text>联想笔记本</Text>
-                    </View>
+                <ListView
+                    style={styles.listView}
+                    dataSource={this.state.dataSource}
+                    renderRow={this._renderRow.bind(this)}
+                    renderSeparator={this._renderSeparator.bind(this)}
+                    renderHeader={this._renderHeader.bind(this)}
 
-                </ScrollView>
+                    enableEmptySections={true}
+                    initialListSize= {1}
+                />
             </View>
         )
+    }
+
+    _renderHeader(){
+        return <ChoiceHeadView headData = {TestData}/>
+    }
+
+    _renderRow(rowData,sectionId,rowId) {
+
+        return   <View style={{height:200,width:300}}>
+                    <Text>{rowData}</Text>
+                </View>
+
+    }
+
+    _renderSeparator(sectionID, rowID, adjacentRowHighlighted) {
+        return (
+            <View key={`{sectionID}-${rowID}`}
+                  style={{height: 1, backgroundColor: '#eee'}}>
+            </View>
+        );
     }
 }
 
@@ -151,5 +172,9 @@ const styles = StyleSheet.create({
         backgroundColor:'#eee',
 
     // width:100,
+    },
+    listView: {
+
+        backgroundColor: 'white',
     },
 })
